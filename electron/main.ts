@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron';
 import * as path from 'path';
 import installExtension, { REACT_DEVELOPER_TOOLS } from "electron-devtools-installer";
+const isDev = require('electron-is-dev');
 
 const Can = require('cs-pcan-usb');
 const { dialog } = require('electron');
@@ -16,6 +17,8 @@ function createWindow() {
     }
   })
 
+  win.menuBarVisible = false
+  
   let can = new Can({
     canRate: 250000,
   });
@@ -89,7 +92,8 @@ function createWindow() {
   } else {
     win.loadURL('http://localhost:3000/index.html');
 
-    win.webContents.openDevTools();
+    if (isDev)
+      win.webContents.openDevTools();
 
     // Hot Reloading on 'node_modules/.bin/electronPath'
     require('electron-reload')(__dirname, {
