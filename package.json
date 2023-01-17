@@ -67,5 +67,9 @@
     "electron": "^21.2.3",
     "electron-builder": "^23.6.0",
     "wait-on": "^6.0.1"
+  },
+  "packageManager": "yarn@3.3.1",
+  "resolutions": {
+    "@serialport/bindings@^8.0.8": "patch:@serialport/bindings@npm%3A8.0.8#./.yarn/patches/@serialport-bindings-npm-8.0.8-52e0aa3d21.patch"
   }
 }

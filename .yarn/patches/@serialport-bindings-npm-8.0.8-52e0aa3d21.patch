@@ -1,0 +1,14 @@
+diff --git a/binding.gyp b/binding.gyp
+index 2aa58751c5da9e021bacc1a41f47e46a51c6302c..37588655e2dc93cbd68cb19d17153922f3f658c0 100644
+--- a/binding.gyp
++++ b/binding.gyp
+@@ -4,6 +4,9 @@
+     'sources': [
+       'src/serialport.cpp'
+     ],
++    'msvs_settings': {
++            'VCCLCompilerTool': { "ExceptionHandling": 1, 'AdditionalOptions': [ '-std:c++17' ] }
++          },
+     'include_dirs': [
+       '<!(node -e "require(\'nan\')")'
+     ],
