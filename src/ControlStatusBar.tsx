@@ -8,6 +8,8 @@ import StatusLight from './StatusLight';
 import { Potential_SelectionType, Potential_Selection_StatusType, Faults_RequestType } from './AppTypes';
 
 interface ControlStatusBarProps {
+  A : boolean
+  B : boolean
   potSec : Potential_SelectionType
   setPotSec : (arg0 : Potential_SelectionType) => void
   potStatus : Potential_Selection_StatusType
@@ -16,8 +18,8 @@ interface ControlStatusBarProps {
 }
 
 class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
-    constructor({potSec, setPotSec, potStatus, setFaultReq, sendCanRqst} : ControlStatusBarProps) {
-      super({potSec, setPotSec, potStatus, setFaultReq, sendCanRqst});
+    constructor({A, B, potSec, setPotSec, potStatus, setFaultReq, sendCanRqst} : ControlStatusBarProps) {
+      super({A, B, potSec, setPotSec, potStatus, setFaultReq, sendCanRqst});
     }
     
     render() {
@@ -60,7 +62,7 @@ class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
               <ControlButtons name="KICKOUT" color="#dc143c" onClick={() => {this.props.sendCanRqst()}}></ControlButtons>
             </div>
             <div style={{flex: 2}}></div>
-            <StatusLight></StatusLight>
+            <StatusLight A={this.props.A} B={this.props.B}></StatusLight>
             <div style={{flex: 1}}></div>
         </div>
       );

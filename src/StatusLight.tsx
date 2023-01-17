@@ -3,8 +3,13 @@ import "./StatusLight.css"
 
 import Led from './Led';
 
-class StatusLight extends React.Component {
-    constructor(props : any) {
+interface StatusLightInterface {
+  A : boolean
+  B : boolean
+}
+
+class StatusLight extends React.Component<StatusLightInterface, {}> {
+    constructor(props : StatusLightInterface) {
       super(props);
     }
   
@@ -12,11 +17,11 @@ class StatusLight extends React.Component {
       return (
         <div className='status-light-container'>
             <div className='status-light'>
-                <Led ledOn = {false} size = "big" ledType = "square"></Led>
+                <Led ledOn = {this.props.A} size = "big" ledType = "square"></Led>
                 Status_A
             </div>
             <div className='status-light'>
-                <Led ledOn = {false} size = "big" ledType = "square"></Led>
+                <Led ledOn = {this.props.B} size = "big" ledType = "square"></Led>
                 Status_B
             </div>
         </div>

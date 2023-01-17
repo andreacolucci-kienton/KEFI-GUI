@@ -14,21 +14,47 @@ interface AppState {
   faultStatus   : Faults_StatusType[]
   potentialSelectionRequest : Potential_SelectionType
   potentialSelectionStatus : Potential_Selection_StatusType
+  boardAStatus : boolean
+  boardBStatus : boolean
 }
 
 class App extends Component<{}, AppState> {
 
+  boardAStatusRecv : boolean
+  boardBStatusRecv : boolean
+
   constructor(props : {}) {
     super(props)
+
+    this.boardAStatusRecv = false
+    this.boardBStatusRecv = false
 
     this.state = {
       faultRequests : Array(92).fill({OpenLoad_CHxx_Req : 0, ShortCircuit_CHxx_Req : 0} as Faults_RequestType),
       faultStatus   : Array(92).fill({OpenLoad_CHxx : 0,     ShortCircuit_CHxx : 0} as Faults_StatusType),
       potentialSelectionRequest : {Enable_Short2Pot_Request : 0, Selection_Vbat_GND_Request : 0},
-      potentialSelectionStatus : {Enable_Short_Status : 0, Select_Vbat_GND_Status : 0}
+      potentialSelectionStatus : {Enable_Short_Status : 0, Select_Vbat_GND_Status : 0},
+      boardAStatus : false,
+      boardBStatus : false
     }
 
-    window.electronAPI.recvBoard_A_Status((event, value) => {console.log("Recv msg", value)})
+    window.electronAPI.recvBoard_A_Status((_evt, _data) => {this.boardAStatusRecv = true})
+    window.electronAPI.recvBoard_A_Status((_evt, _data) => {this.boardBStatusRecv = true})
+
+    setInterval(() => {
+      if (this.boardAStatusRecv)
+        this.setState({boardAStatus : true})
+      else
+        this.setState({boardAStatus : false})
+      this.boardAStatusRecv = false
+
+      if (this.boardBStatusRecv)
+        this.setState({boardBStatus : true})
+      else
+        this.setState({boardBStatus : false})
+      this.boardBStatusRecv = false
+
+    }, 1500)
   }
   
   sendCanRqst() {
@@ -185,7 +211,9 @@ class App extends Component<{}, AppState> {
   render() {
     return (
       <div className="App">
-        <ControlStatusBar 
+        <ControlStatusBar
+          A={this.state.boardAStatus}
+          B={this.state.boardBStatus}
           potSec={this.state.potentialSelectionRequest} 
           setPotSec={(n_potSel) => {this.setState({potentialSelectionRequest : n_potSel})}} 
           potStatus={this.state.potentialSelectionStatus} 

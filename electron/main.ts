@@ -53,12 +53,11 @@ function createWindow() {
   can.on("data", (msg : any) => {
     switch (msg.id) {
       case 0x7F6:
-        dialog.showMessageBox(win, {"title" : "HEY!", "message" : JSON.stringify(msg.buf.data)})
-        win.webContents.send('board-a-status', msg.buf.data)
+        win.webContents.send('board-a-status', [...msg.buf])
         break
 
       case 0x7F7:
-        win.webContents.send('board-b-status', msg.buf.data)
+        win.webContents.send('board-b-status', [...msg.buf])
         break
     }
     //dialog.showMessageBox(win, {"title" : "CIAO", "message" : JSON.stringify(msg)})
