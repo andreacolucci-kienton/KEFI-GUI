@@ -16,6 +16,7 @@ interface AppState {
   potentialSelectionStatus : Potential_Selection_StatusType
   boardAStatus : boolean
   boardBStatus : boolean
+  resetRequest : boolean
 }
 
 class App extends Component<{}, AppState> {
@@ -35,7 +36,8 @@ class App extends Component<{}, AppState> {
       potentialSelectionRequest : {Enable_Short2Pot_Request : 0, Selection_Vbat_GND_Request : 0},
       potentialSelectionStatus : {Enable_Short_Status : 0, Select_Vbat_GND_Status : 0},
       boardAStatus : false,
-      boardBStatus : false
+      boardBStatus : false,
+      resetRequest : false,
     }
   }
   
@@ -229,6 +231,13 @@ class App extends Component<{}, AppState> {
       }
     }
   }
+
+  componentDidUpdate(prevProps: Readonly<{}>, prevState: Readonly<AppState>, snapshot?: any): void {
+    if (this.state.resetRequest) {
+      this.sendCanRqst()
+      this.setState({resetRequest : false})
+    }
+  }
  
   render() {
     return (
@@ -240,7 +249,8 @@ class App extends Component<{}, AppState> {
           setPotSec={(n_potSel) => {this.setState({potentialSelectionRequest : n_potSel})}} 
           potStatus={this.state.potentialSelectionStatus} 
           setFaultReq={(n_faultReq) => {this.setState({faultRequests : n_faultReq})}}
-          sendCanRqst={() => {this.sendCanRqst()}}></ControlStatusBar>
+          sendCanRqst={() => {this.sendCanRqst()}}
+          sendResetRqst={() => {this.setState({resetRequest : true})}}></ControlStatusBar>
 
         <SignalGrid 
           faultReq={this.state.faultRequests} 

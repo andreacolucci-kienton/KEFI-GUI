@@ -15,11 +15,12 @@ interface ControlStatusBarProps {
   potStatus : Potential_Selection_StatusType
   setFaultReq : (arg0 : Faults_RequestType[]) => void
   sendCanRqst : () => void
+  sendResetRqst : () => void
 }
 
 class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
-    constructor({A, B, potSec, setPotSec, potStatus, setFaultReq, sendCanRqst} : ControlStatusBarProps) {
-      super({A, B, potSec, setPotSec, potStatus, setFaultReq, sendCanRqst});
+    constructor({A, B, potSec, setPotSec, potStatus, setFaultReq, sendCanRqst, sendResetRqst} : ControlStatusBarProps) {
+      super({A, B, potSec, setPotSec, potStatus, setFaultReq, sendCanRqst, sendResetRqst});
     }
     
     render() {
@@ -62,6 +63,7 @@ class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
                   Enable_Short2Pot_Request : 0
                 })
                 this.props.setFaultReq(Array(92).fill({OpenLoad_CHxx_Req : 0, ShortCircuit_CHxx_Req : 0} as Faults_RequestType))
+                this.props.sendResetRqst()
               }}></ControlButtons>
               <ControlButtons name="KICKOUT" color="#dc143c" onClick={() => {this.props.sendCanRqst()}}></ControlButtons>
             </div>
