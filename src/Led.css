@@ -1,0 +1,5 @@
+.led {
+    aspect-ratio: 1;
+    display: inline-block;
+    border: 1px soldi grey;
+}

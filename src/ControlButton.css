@@ -1,0 +1,10 @@
+.control-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin: 10px;
+    min-width: 130px;
+    aspect-ratio: 3 / 1;
+    border: 1px solid black;
+}

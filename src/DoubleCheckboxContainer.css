@@ -1,0 +1,25 @@
+.double-checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*flex: 1;*/
+    min-width: 250px;
+}
+
+.double-checkbox {
+    display: flex;
+    flex: 1;
+    margin: 10px;
+    flex-direction: column;
+}
+
+.checkbox-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 5px;
+}
+
+.checkbox-class {
+    width: max-content;
+}

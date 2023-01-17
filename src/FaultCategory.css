@@ -1,0 +1,11 @@
+.fault-container {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+}
+
+.selection-container {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+}

@@ -1,0 +1,14 @@
+.signal-channel-container {
+    border: 1px solid black;
+    font-size: 10px;
+}
+
+.signal-channel-title p {
+    margin: 2px;
+}
+
+.signal-channel-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

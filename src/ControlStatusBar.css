@@ -1,0 +1,14 @@
+.control-status-bar {
+    background-color: #221f1f;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.control-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}

@@ -1,0 +1,19 @@
+.signal-grid {
+    background-color: #221f1f;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-auto-flow: columns;
+    gap: 4px;
+    min-width: 0px;
+    flex : 1
+}
+
+.grid-logo {
+    grid-column: 10;
+    grid-row : 3 / 11;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    filter: invert()
+}
