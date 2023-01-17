@@ -30,16 +30,42 @@ class App extends Component<{}, AppState> {
     this.boardBStatusRecv = false
 
     this.state = {
-      faultRequests : Array(92).fill({OpenLoad_CHxx_Req : 0, ShortCircuit_CHxx_Req : 0} as Faults_RequestType),
-      faultStatus   : Array(92).fill({OpenLoad_CHxx : 0,     ShortCircuit_CHxx : 0} as Faults_StatusType),
+      faultRequests : Array(92).fill({}).map(() => ({OpenLoad_CHxx_Req : 0, ShortCircuit_CHxx_Req : 0})),
+      faultStatus   : Array(92).fill({}).map(() => ({OpenLoad_CHxx : 0,     ShortCircuit_CHxx : 0})),
       potentialSelectionRequest : {Enable_Short2Pot_Request : 0, Selection_Vbat_GND_Request : 0},
       potentialSelectionStatus : {Enable_Short_Status : 0, Select_Vbat_GND_Status : 0},
       boardAStatus : false,
       boardBStatus : false
     }
-
+  }
+  
+  componentDidMount() {
     window.electronAPI.recvBoard_A_Status((_evt, _data) => {this.boardAStatusRecv = true})
-    window.electronAPI.recvBoard_A_Status((_evt, _data) => {this.boardBStatusRecv = true})
+    window.electronAPI.recvBoard_B_Status((_evt, _data) => {this.boardBStatusRecv = true})
+    window.electronAPI.recvPotential_Selection_Status((_evt, data) => {
+      this.setState({potentialSelectionStatus : {Enable_Short_Status : (data[0] & 0x1) as Bit, Select_Vbat_GND_Status : data[0] >= 2 ? 1 : 0}})
+    })
+    window.electronAPI.recvPower_Faults_A_Status((_evt, data) => {
+      let newFaultStatus = [...this.state.faultStatus]
+      this.unpackPowerFault(60, data, newFaultStatus)
+      this.setState({faultStatus : newFaultStatus})
+
+    })
+    window.electronAPI.recvPower_Faults_B_Status((_evt, data) => {
+      let newFaultStatus = [...this.state.faultStatus]
+      this.unpackPowerFault(76, data, newFaultStatus)
+      this.setState({faultStatus : newFaultStatus})
+    })
+    window.electronAPI.recvSignal_Faults_A_Status((_evt, data) => {
+      let newFaultStatus = [...this.state.faultStatus]
+      this.unpackSignalFault(0, data, newFaultStatus)
+      this.setState({faultStatus : newFaultStatus})
+    })
+    window.electronAPI.recvSignal_Faults_B_Status((_evt, data) => {
+      let newFaultStatus = [...this.state.faultStatus]
+      this.unpackSignalFault(30, data, newFaultStatus)
+      this.setState({faultStatus : newFaultStatus})
+    })
 
     setInterval(() => {
       if (this.boardAStatusRecv)
@@ -134,8 +160,6 @@ class App extends Component<{}, AppState> {
       }
     }
 
-    console.log("End startchannel ", strtChannel)
-
     return retBuf
   }
 
@@ -182,8 +206,6 @@ class App extends Component<{}, AppState> {
         strtChannel_ShortCircuit += 8
       }
     }
-
-    console.log("End startchannel ", strtChannel)
 
     return retBuf
   }

@@ -59,6 +59,26 @@ function createWindow() {
       case 0x7F7:
         win.webContents.send('board-b-status', [...msg.buf])
         break
+
+      case 0x7F9:
+        win.webContents.send('potential-selection', [...msg.buf])
+        break
+
+      case 0x7FB:
+        win.webContents.send('power-faults-a', [...msg.buf])
+        break
+
+      case 0x7FD:
+        win.webContents.send("power-faults-b", [...msg.buf])
+        break
+
+      case 0x7FA:
+        win.webContents.send('signal-faults-a', [...msg.buf])
+        break
+
+      case 0x7FC:
+        win.webContents.send("signal-faults-b", [...msg.buf])
+        break
     }
     //dialog.showMessageBox(win, {"title" : "CIAO", "message" : JSON.stringify(msg)})
   })

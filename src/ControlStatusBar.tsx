@@ -31,6 +31,8 @@ class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
               leftOption="VBATT"
               rightOption="GND"
               rightCheck={this.props.potSec.Selection_Vbat_GND_Request === 0}
+              rightStatus={this.props.potStatus.Select_Vbat_GND_Status === 0}
+              leftStatus={this.props.potStatus.Select_Vbat_GND_Status === 1}
               switchCheck={(nRightCheck : boolean) => {
                 this.props.setPotSec({
                   Selection_Vbat_GND_Request : nRightCheck ? 0 : 1,
@@ -43,6 +45,8 @@ class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
               leftOption="SHORT PIN TO PIN"
               rightOption="SHORT TO POTENTIAL" 
               rightCheck={this.props.potSec.Enable_Short2Pot_Request === 1}
+              rightStatus={this.props.potStatus.Enable_Short_Status === 0}
+              leftStatus={this.props.potStatus.Enable_Short_Status === 1}
               switchCheck={(nRightCheck : boolean) => {
                 this.props.setPotSec({
                   Selection_Vbat_GND_Request : this.props.potSec.Selection_Vbat_GND_Request,

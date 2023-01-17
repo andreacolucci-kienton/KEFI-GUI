@@ -11,12 +11,12 @@ export interface IElectronAPI {
             ) => void
 
     recvBoard_A_Status : (callback : (evt : any, Board_A_Status : number[]) => void) => void
-    recvBoard_B_Status : (Board_B_Status : number[]) => void 
-    recvPotential_Selection_Status : (Potential_Selection_Status : number[]) => void 
-    recvPower_Faults_A_Status : (Power_Faults_A_Status : number[]) => void 
-    recvPower_Faults_B_Status : (Power_Faults_B_Status : number[]) => void 
-    recvSignal_Faults_A_Status : (Signal_Faults_A_Status : number[]) => void 
-    recvSignal_Faults_B_Status : (Signal_Faults_B_Status : number[]) => void 
+    recvBoard_B_Status : (callback : (evt : any, Board_A_Status : number[]) => void) => void
+    recvPotential_Selection_Status : (callback : (evt : any, Potential_Selection_Status : number[]) => void) => void
+    recvPower_Faults_A_Status : (callback : (evt : any, Power_Faults_A_Status : number[]) => void) => void
+    recvPower_Faults_B_Status : (callback : (evt : any, Power_Faults_B_Status : number[]) => void) => void
+    recvSignal_Faults_A_Status : (callback : (evt : any, Signal_Faults_A_Status : number[]) => void) => void
+    recvSignal_Faults_B_Status : (callback : (evt : any, Signal_Faults_B_Status : number[]) => void) => void
   }
   
 declare global {

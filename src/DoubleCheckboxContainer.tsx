@@ -35,10 +35,10 @@ class DoubleCheckboxContainer extends React.Component<DoubleCheck, {}> {
                 </div>
                 <div className="checkbox-container">
                     <div className="checkbox-class"><input type="checkbox" id="left-check" name="left-check" checked={!this.props.rightCheck} disabled={!this.props.active} onChange={() => {this.props.switchCheck(!this.props.rightCheck)}}/> {this.props.leftOption} </div>
-                    <Led ledOn = {!this.props.rightCheck} size = "big" ledType = "square"></Led>
+                    <Led ledOn = {this.props.leftStatus} size = "big" ledType = "square"></Led>
                     <div style={{flex: 1}}></div>
                     <div className="checkbox-class"><input type="checkbox" id="right-check" name="right-check" checked={this.props.rightCheck} disabled={!this.props.active} onChange={() => {this.props.switchCheck(!this.props.rightCheck)}}/> {this.props.rightOption} </div>
-                    <Led ledOn = {this.props.rightCheck}  size = "big" ledType = "square"></Led>
+                    <Led ledOn = {this.props.rightStatus}  size = "big" ledType = "square"></Led>
                 </div>
             </div>
         </div>
