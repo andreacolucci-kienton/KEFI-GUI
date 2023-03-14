@@ -2536,7 +2536,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@serialport/bindings@npm:^8.0.8":
+"@serialport/bindings@npm:8.0.8":
   version: 8.0.8
   resolution: "@serialport/bindings@npm:8.0.8"
   dependencies:
@@ -2548,6 +2548,21 @@ __metadata:
     node-gyp: latest
     prebuild-install: ^5.3.0
   checksum: 50ba5b514e8f9e9a6e211f787a6a75bf3a605628a5bad31cc6fa9838f000a06fe64e503d1df24866ecd3515d328ff27c7b9e123e57e176f62a3b16f1405845c0
+  languageName: node
+  linkType: hard
+
+"@serialport/bindings@patch:@serialport/bindings@npm%3A8.0.8#./.yarn/patches/@serialport-bindings-npm-8.0.8-52e0aa3d21.patch::locator=kefi%40workspace%3A.":
+  version: 8.0.8
+  resolution: "@serialport/bindings@patch:@serialport/bindings@npm%3A8.0.8#./.yarn/patches/@serialport-bindings-npm-8.0.8-52e0aa3d21.patch::version=8.0.8&hash=f53d19&locator=kefi%40workspace%3A."
+  dependencies:
+    "@serialport/binding-abstract": ^8.0.6
+    "@serialport/parser-readline": ^8.0.6
+    bindings: ^1.5.0
+    debug: ^4.1.1
+    nan: ^2.14.0
+    node-gyp: latest
+    prebuild-install: ^5.3.0
+  checksum: fec50df270bf66fe34b3832984ea41168111162ed666df4056d5ada57c5fa81664ef734b04b47340ee8517248c5062b0e61f1f93af28e7c18c7ca112e610cd79
   languageName: node
   linkType: hard
 
