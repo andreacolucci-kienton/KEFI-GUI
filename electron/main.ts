@@ -34,13 +34,17 @@ function createWindow() {
       Power_Faults_B_Request,
       Signal_Faults_A_Request,
       Signal_Faults_B_Request) => {
-        Promise.all([
-          can.write(Potential_Selection),
-          can.write(Power_Faults_A_Request),
-          can.write(Power_Faults_B_Request),
-          can.write(Signal_Faults_A_Request),
-          can.write(Signal_Faults_B_Request)
-        ]).catch((error) => {
+        const timeout = 5
+        can.write(Potential_Selection)
+        .then(() => new Promise(resolve => setTimeout(resolve, timeout)))
+        .then(() => can.write(Power_Faults_A_Request))
+        .then(() => new Promise(resolve => setTimeout(resolve, timeout)))
+        .then(() => can.write(Power_Faults_B_Request))
+        .then(() => new Promise(resolve => setTimeout(resolve, timeout)))
+        .then(() => can.write(Signal_Faults_A_Request))
+        .then(() => new Promise(resolve => setTimeout(resolve, timeout)))
+        .then(() => can.write(Signal_Faults_B_Request))
+        .catch(() => {
           dialog.showMessageBox(win, {"title" : "Errore!", "message" : "Errore nell'invio dei messaggi"}).then((retval) => {can.close(); app.quit()})
         })
     })

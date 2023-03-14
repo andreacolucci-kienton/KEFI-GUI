@@ -1,6 +1,6 @@
 {
   "name": "kefi",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "author": "Kineton",
   "description": "Kefi GUI for sending and receiving CAN messages on PC",
   "homepage": ".",
