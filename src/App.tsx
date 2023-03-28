@@ -23,12 +23,14 @@ class App extends Component<{}, AppState> {
 
   boardAStatusRecv : boolean
   boardBStatusRecv : boolean
+  intervalId : number
 
   constructor(props : {}) {
     super(props)
 
     this.boardAStatusRecv = false
     this.boardBStatusRecv = false
+    this.intervalId = 0
 
     this.state = {
       faultRequests : Array(92).fill({}).map(() => ({OpenLoad_CHxx_Req : 0, ShortCircuit_CHxx_Req : 0})),
@@ -69,7 +71,7 @@ class App extends Component<{}, AppState> {
       this.setState({faultStatus : newFaultStatus})
     })
 
-    setInterval(() => {
+    this.intervalId = window.setInterval(() => {
       if (this.boardAStatusRecv)
         this.setState({boardAStatus : true})
       else
@@ -83,6 +85,10 @@ class App extends Component<{}, AppState> {
       this.boardBStatusRecv = false
 
     }, 1500)
+  }
+
+  componentWillUnmount(): void {
+    window.clearInterval(this.intervalId)
   }
   
   sendCanRqst() {

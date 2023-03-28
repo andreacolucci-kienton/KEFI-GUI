@@ -17,11 +17,11 @@ class StatusLight extends React.Component<StatusLightInterface, {}> {
       return (
         <div className='status-light-container'>
             <div className='status-light'>
-                <Led ledOn = {this.props.A} size = "big" ledType = "square"></Led>
+                <Led ledOn = {this.props.A} blink = {true} size = "big" ledType = "square"></Led>
                 Status_A
             </div>
             <div className='status-light'>
-                <Led ledOn = {this.props.B} size = "big" ledType = "square"></Led>
+                <Led ledOn = {this.props.B} blink = {true} size = "big" ledType = "square"></Led>
                 Status_B
             </div>
         </div>
