@@ -1,6 +1,6 @@
 {
   "name": "kefi",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Kineton",
   "description": "Kefi GUI for sending and receiving CAN messages on PC",
   "homepage": ".",
@@ -41,6 +41,9 @@
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "nsis" : {
+      "createDesktopShortcut" : "always"
     }
   },
   "eslintConfig": {

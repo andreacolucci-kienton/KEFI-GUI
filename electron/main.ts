@@ -9,7 +9,7 @@ const { dialog } = require('electron');
 function createWindow() {
   const win = new BrowserWindow({
     width: 1200,
-    minWidth: 1050,
+    minWidth: 1150,
     height: 800,
     webPreferences: {
       // contextIsolation: false,

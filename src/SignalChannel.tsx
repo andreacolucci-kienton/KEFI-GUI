@@ -9,6 +9,7 @@ import { Faults_RequestType, Faults_StatusType } from './AppTypes';
 
 interface SignalChannelInterface {
   channelNumber : number
+  active : boolean
   backGroundColor : Color
   faultReq : Faults_RequestType
   faultStatus : Faults_StatusType
@@ -21,8 +22,17 @@ class SignalChannel extends React.Component<SignalChannelInterface, {}> {
     }
   
     render() {
+      let channelContainerStyle : React.CSSProperties = {}
+
+      if (!this.props.active) {
+        channelContainerStyle.backgroundColor = 'lightgrey'
+        channelContainerStyle.filter = "grayscale(100%)"
+      } else {
+        channelContainerStyle.backgroundColor = this.props.backGroundColor
+      }
+
       return (
-        <div className='signal-channel-container' style={{backgroundColor : this.props.backGroundColor}}>
+        <div className='signal-channel-container' style={channelContainerStyle}>
             <div className='signal-channel-title'>
                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                 <div style={{flex: 1, height: '1px', backgroundColor: 'black'}} />
@@ -35,7 +45,8 @@ class SignalChannel extends React.Component<SignalChannelInterface, {}> {
                 </div>
             </div>
             <div className="fault-box">
-                <FaultCategory 
+                <FaultCategory
+                    active={this.props.active} 
                     faultName='OpenLoad' 
                     checked={this.props.faultReq.OpenLoad_CHxx_Req == 1} 
                     faultReceived={this.props.faultStatus.OpenLoad_CHxx == 1} 
@@ -46,7 +57,8 @@ class SignalChannel extends React.Component<SignalChannelInterface, {}> {
                         }}></FaultCategory>
             </div>
             <div className="fault-box">
-                <FaultCategory 
+                <FaultCategory
+                    active={this.props.active}
                     faultName='ShortCircuit' 
                     checked={this.props.faultReq.ShortCircuit_CHxx_Req == 1} 
                     faultReceived={this.props.faultStatus.ShortCircuit_CHxx == 1}

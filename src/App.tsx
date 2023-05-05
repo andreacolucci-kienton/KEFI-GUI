@@ -261,7 +261,9 @@ class App extends Component<{}, AppState> {
         <SignalGrid 
           faultReq={this.state.faultRequests} 
           setFaultReq={(n_faultReq) => {this.setState({faultRequests : n_faultReq})}} 
-          faultStatus={this.state.faultStatus} 
+          faultStatus={this.state.faultStatus}
+          A={this.state.boardAStatus}
+          B={this.state.boardBStatus}
           n_channels={92}></SignalGrid>
       </div>
     );

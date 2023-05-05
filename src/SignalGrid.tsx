@@ -6,6 +6,8 @@ import SignalChannel from './SignalChannel';
 import { Faults_RequestType, Faults_StatusType } from './AppTypes';
 
 interface SignalGridInterface {
+  A : boolean
+  B : boolean
   n_channels : number
   faultReq : Faults_RequestType[]
   faultStatus : Faults_StatusType[]
@@ -24,13 +26,19 @@ class SignalGrid extends React.Component<SignalGridInterface, {}> {
               [...Array(this.props.n_channels)].map(
                   (x, i) => {
                     return (<SignalChannel 
-                      key={i + 1} 
+                      key={i + 1}
+                      active={((idx) => {
+                        if ((idx >= 31 && idx <= 60) || (idx >= 77 && idx <= 92)) {
+                          return this.props.B
+                        } else {
+                          return this.props.A
+                        }
+                      })(i + 1)}
                       channelNumber={i + 1} 
                       backGroundColor={ i + 1 <= 60 ? "#ffffff" : "#fac08f"} 
                       faultReq={this.props.faultReq[i]} 
                       faultStatus={this.props.faultStatus[i]}
                       setFaultReq={(faultReq : Faults_RequestType) => {
-
                         let nFaultReq : Faults_RequestType[] = this.props.faultReq.slice()
                         nFaultReq[i] = faultReq
                         this.props.setFaultReq(nFaultReq)
