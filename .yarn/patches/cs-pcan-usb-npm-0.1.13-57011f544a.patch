@@ -1,0 +1,13 @@
+diff --git a/index.js b/index.js
+index d8511c63f3892f583ffb11509571ec893adc538b..7af6ae5aed92f26a71e5eb073c835af3867348cb 100644
+--- a/index.js
++++ b/index.js
+@@ -142,7 +142,7 @@ module.exports = class PcanUsb extends Duplex {
+         }
+ 
+         // Initialize CAN port (aka "channel")
+-        pcan.Initialize(port, pcan.TranslateBaud(me.options.canRate));
++        pcan.Initialize(port, me.options.canRate);
+ 
+         me.port = port;
+         me._configure();

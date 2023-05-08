@@ -20,7 +20,7 @@ function createWindow() {
   win.menuBarVisible = false
   
   let can = new Can({
-    canRate: 500000,
+    canRate: 0x0123,
   });
 
   can.list()
