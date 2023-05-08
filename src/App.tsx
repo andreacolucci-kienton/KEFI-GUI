@@ -84,7 +84,7 @@ class App extends Component<{}, AppState> {
         this.setState({boardBStatus : false})
       this.boardBStatusRecv = false
 
-    }, 1500)
+    }, 3000)
   }
 
   componentWillUnmount(): void {

@@ -52,7 +52,7 @@ function createWindow() {
       can.write({id : 0x7F8, ext : false, buf : Buffer.from(Array(8).fill(0))}).catch(() => {}).catch(() => {
         dialog.showMessageBox(win, {"title" : "Errore!", "message" : "Impossibile inviare messaggi sul CAN."}).then((retval) => {can.close(); app.quit()})
       })
-    }, 1000)
+    }, 2000)
   }).catch((error : any) => {
     dialog.showMessageBox(win, {"title" : "Errore!", "message" : "Impossibile aprire interfaccia CAN."}).then((retval) => {can.close(); app.quit()})
   })
