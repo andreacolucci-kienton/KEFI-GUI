@@ -151,20 +151,27 @@ class App extends Component<{}, AppState> {
     let strtChannel_ShortCircuit : number = strtChannel
 
     for (let j = 0; j < 8; j++) {
+
+      if ((j % 2) == 0) {
+        var lastBit = 8
+      } else {
+        var lastBit = 7
+      }
+      
       if (j == 0 || j == 1 || j == 4 || j == 5) {
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < lastBit; i++) {
           byte += (2**i) * this.state.faultRequests[i + strtChannel_OpenLoad].OpenLoad_CHxx_Req
         }
         retBuf.push(byte)
         byte = 0
-        strtChannel_OpenLoad += 8
+        strtChannel_OpenLoad += lastBit
       } else {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < lastBit; i++) {
           byte += (2**i) * this.state.faultRequests[i + strtChannel_ShortCircuit].ShortCircuit_CHxx_Req
         }
         retBuf.push(byte)
         byte = 0
-        strtChannel_ShortCircuit += 7
+        strtChannel_ShortCircuit += lastBit
       }
     }
 
@@ -176,17 +183,24 @@ class App extends Component<{}, AppState> {
     let strtChannel_ShortCircuit : number = strtChannel
 
     for (let j = 0; j < 8; j++) {
+
+      if ((j % 2) == 0) {
+        var lastBit = 8
+      } else {
+        var lastBit = 7
+      }
+
       if (j == 0 || j == 1 || j == 4 || j == 5) {
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < lastBit; i++) {
           recvFaultStatus[i + strtChannel_OpenLoad].OpenLoad_CHxx = ((msgBuffer[j] >> i) & 0x1) as Bit
         }
-        strtChannel_OpenLoad += 8
+        strtChannel_OpenLoad += lastBit
       }
       else {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < lastBit; i++) {
           recvFaultStatus[i + strtChannel_ShortCircuit].ShortCircuit_CHxx = ((msgBuffer[j] >> i) & 0x1) as Bit
         }
-        strtChannel_ShortCircuit += 7
+        strtChannel_ShortCircuit += lastBit
       }
     }
   }
