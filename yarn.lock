@@ -5477,7 +5477,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cs-pcan-usb@npm:^0.1.13":
+"cs-pcan-usb@npm:0.1.13":
   version: 0.1.13
   resolution: "cs-pcan-usb@npm:0.1.13"
   dependencies:
@@ -5489,6 +5489,22 @@ __metadata:
     stream: 0.0.2
     usb: ^1.6.3
   checksum: e65e2f720c790b86c60ba104b307c5ffe1d88466ba4f26602a2228afc82a19b00545f2cfb91ce99c61a899f518e386af9f6c85e7abce1339517e91291b84bd4e
+  conditions: (os=darwin | os=win32)
+  languageName: node
+  linkType: hard
+
+"cs-pcan-usb@patch:cs-pcan-usb@npm%3A0.1.13#./.yarn/patches/cs-pcan-usb-npm-0.1.13-57011f544a.patch::locator=kefi%40workspace%3A.":
+  version: 0.1.13
+  resolution: "cs-pcan-usb@patch:cs-pcan-usb@npm%3A0.1.13#./.yarn/patches/cs-pcan-usb-npm-0.1.13-57011f544a.patch::version=0.1.13&hash=dcc57b&locator=kefi%40workspace%3A."
+  dependencies:
+    "@csllc/j1939": ^1.0.0
+    bindings: ~1.2.1
+    can-usb-com: ^4.0.0
+    eslint: ^7.10.0
+    node-pre-gyp: ^0.15.0
+    stream: 0.0.2
+    usb: ^1.6.3
+  checksum: 8e9d4efea54184668b8345d35abc05447beb017ef678d643c917d159fd60bbb743eb83bb769162553965b1242d80e68ebbc6d46edc958f9fd1ede762a36718f3
   conditions: (os=darwin | os=win32)
   languageName: node
   linkType: hard
