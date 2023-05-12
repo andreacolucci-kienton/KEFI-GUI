@@ -47,7 +47,11 @@ class App extends Component<{}, AppState> {
     window.electronAPI.recvBoard_A_Status((_evt, _data) => {this.boardAStatusRecv = true})
     window.electronAPI.recvBoard_B_Status((_evt, _data) => {this.boardBStatusRecv = true})
     window.electronAPI.recvPotential_Selection_Status((_evt, data) => {
-      this.setState({potentialSelectionStatus : {Enable_Short_Status : (data[0] & 0x1) as Bit, Select_Vbat_GND_Status : data[0] >= 2 ? 1 : 0}})
+      if (data[0] == 0x1 || data[0] == 0x2) {
+        this.setState({potentialSelectionStatus : {Enable_Short_Status : (data[0] & 0x1) as Bit, Select_Vbat_GND_Status : data[0] >= 2 ? 1 : 0}})
+      } else {
+        window.alert("Error on potential selection")
+      }
     })
     window.electronAPI.recvPower_Faults_A_Status((_evt, data) => {
       let newFaultStatus = [...this.state.faultStatus]

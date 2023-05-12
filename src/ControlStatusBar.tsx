@@ -57,7 +57,7 @@ class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
               active={true}></DoubleCheckboxContainer>
             <div style={{flex: 1}}></div>
             <div className="control-buttons-container">
-              <ControlButtons name="RESET" color="#98fb98" onClick={() => {
+              <ControlButtons name="RESET" color="#98fb98" hoverColor="#53f553" onClick={() => {
                 this.props.setPotSec({
                   Selection_Vbat_GND_Request : 0,
                   Enable_Short2Pot_Request : 0
@@ -65,7 +65,7 @@ class ControlStatusBar extends React.Component<ControlStatusBarProps, {}> {
                 this.props.setFaultReq(Array(92).fill({OpenLoad_CHxx_Req : 0, ShortCircuit_CHxx_Req : 0} as Faults_RequestType))
                 this.props.sendResetRqst()
               }}></ControlButtons>
-              <ControlButtons name="KICKOUT" color="#dc143c" onClick={() => {this.props.sendCanRqst()}}></ControlButtons>
+              <ControlButtons name="KICKOUT" color="#dc143c" hoverColor="#d9022d" onClick={() => {this.props.sendCanRqst()}}></ControlButtons>
             </div>
             <div style={{flex: 2}}></div>
             <StatusLight A={this.props.A} B={this.props.B}></StatusLight>
